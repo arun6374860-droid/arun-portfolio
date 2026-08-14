@@ -14,7 +14,7 @@ import {
   Github,
   ExternalLink
 } from 'lucide-react';
-import { PERSONAL_INFO, EDUCATION_DATA, SKILL_CATEGORIES, PROJECTS_DATA, HACKATHON_DATA, CERTIFICATIONS_DATA } from '../data/resumeData';
+import { PERSONAL_INFO, EDUCATION_DATA, SCHOOL_EDUCATION_DATA, SKILL_CATEGORIES, PROJECTS_DATA, HACKATHON_DATA, CERTIFICATIONS_DATA } from '../data/resumeData';
 import { triggerConfetti, triggerSuperConfetti } from '../utils/confetti';
 import { sounds } from '../utils/audio';
 
@@ -56,6 +56,12 @@ EDUCATION
 Bachelor of Engineering (B.E.) – Electronics and Communication Engineering
 Sethu Institute of Technology, Madurai, Tamil Nadu
 Expected Graduation: 2028 | CGPA: 8.2 / 10.0
+
+Higher Secondary Course (12th Standard HSC) – 85%
+St. Britto Hr. Sec. School, Madurai, Tamil Nadu (State Board | Marks: 510/600 | 2024)
+
+Secondary School Leaving Certificate (10th Standard SSLC) – 83%
+St. Joseph's High School, Samayanallur, Madurai (State Board | Marks: 419/500 | 2022)
 
 PROJECTS
 1. CRM Dashboard | Web Development / Python (Live: https://arun-web-seven.vercel.app)
@@ -242,15 +248,30 @@ CERTIFICATIONS & ACHIEVEMENTS
             <h2 className="text-xs font-bold font-mono tracking-widest text-slate-900 uppercase border-b border-slate-400 pb-1 mb-2">
               EDUCATION
             </h2>
-            <div>
-              <div className="flex items-center justify-between text-xs font-bold text-slate-900">
-                <span>{EDUCATION_DATA.degree}</span>
-                <span>Expected Graduation: {EDUCATION_DATA.expectedGraduation}</span>
+            <div className="space-y-2.5">
+              <div>
+                <div className="flex items-center justify-between text-xs font-bold text-slate-900">
+                  <span>{EDUCATION_DATA.degree}</span>
+                  <span>Expected Graduation: {EDUCATION_DATA.expectedGraduation}</span>
+                </div>
+                <div className="flex items-center justify-between text-xs text-slate-700 italic">
+                  <span>{EDUCATION_DATA.institution}, {EDUCATION_DATA.location}</span>
+                  <span className="font-semibold not-italic">CGPA: {EDUCATION_DATA.cgpa}</span>
+                </div>
               </div>
-              <div className="flex items-center justify-between text-xs text-slate-700 italic">
-                <span>{EDUCATION_DATA.institution}, {EDUCATION_DATA.location}</span>
-                <span className="font-semibold not-italic">CGPA: {EDUCATION_DATA.cgpa}</span>
-              </div>
+
+              {SCHOOL_EDUCATION_DATA.map((item) => (
+                <div key={item.id}>
+                  <div className="flex items-center justify-between text-xs font-bold text-slate-900">
+                    <span>{item.standardTitle} ({item.id} Standard)</span>
+                    <span className="font-mono text-blue-700">{item.percentageDisplay} ({item.totalMarks}/{item.maxMarks})</span>
+                  </div>
+                  <div className="flex items-center justify-between text-xs text-slate-700 italic">
+                    <span>{item.schoolName} ({item.board})</span>
+                    <span className="font-semibold not-italic text-slate-600">{item.session}</span>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
 

@@ -38,6 +38,54 @@ export interface Education {
   coursework: string[];
 }
 
+export interface SubjectMark {
+  name: string;
+  tamilName?: string;
+  theory?: number | string;
+  practical?: number | string;
+  internal?: number | string;
+  marksObtained: number;
+  maxMarks: number;
+  marksInWords: string;
+  status: 'P' | 'PASS';
+}
+
+export interface SchoolEducationItem {
+  id: '10th' | '12th';
+  level: string;
+  standardTitle: string;
+  certificateTitle: string;
+  schoolName: string;
+  schoolTamilName?: string;
+  board: string;
+  year: string;
+  session: string;
+  percentage: number;
+  percentageDisplay: string;
+  totalMarks: number;
+  maxMarks: number;
+  marksInWords: string;
+  result: 'PASS';
+  candidateName: string;
+  fatherName?: string;
+  motherName?: string;
+  dob: string;
+  rollNo?: string;
+  registerNo: string;
+  certificateNo: string;
+  emisId: string;
+  tmrCode: string;
+  medium: string;
+  groupCode?: string;
+  groupName?: string;
+  subjects: SubjectMark[];
+  color: string;
+  glowColor: string;
+  badge: string;
+  marksheetFilePath: string;
+  highlights: string[];
+}
+
 export interface Certification {
   id: string;
   title: string;

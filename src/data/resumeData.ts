@@ -1,4 +1,4 @@
-import { Project, SkillCategory, Education, Certification, HackathonExperience } from '../types';
+import { Project, SkillCategory, Education, Certification, HackathonExperience, SchoolEducationItem } from '../types';
 
 export const PERSONAL_INFO = {
   name: 'Arun Pandi A',
@@ -16,9 +16,9 @@ export const PERSONAL_INFO = {
     'Electronics and Communication Engineering undergraduate (Expected 2028, GPA: 8.2/10) with hands-on experience in software development, IoT, and embedded systems. Proficient in C, C++, Python, and basic web development with project experience spanning CRM dashboards, weather applications, and hardware-software integrated systems. Participated in a 36-hour hackathon focused on Madurai Clean City initiatives. Seeking entry-level roles as a Software Developer or VLSI Design Engineer.',
   stats: [
     { label: 'CGPA', value: '8.2 / 10', description: 'Sethu Institute of Technology' },
+    { label: '12th HSC', value: '85%', description: 'St. Britto Hr. Sec. School' },
+    { label: '10th SSLC', value: '83%', description: "St. Joseph's High School" },
     { label: 'Core Projects', value: '5+', description: 'Web, Python, IoT & C Systems' },
-    { label: 'Hackathon Sprint', value: '36 Hrs', description: 'Madurai Clean City Initiative' },
-    { label: 'Certifications', value: '4+', description: 'IoT, NIT & SSN Symposiums' },
   ],
 };
 
@@ -43,6 +43,95 @@ export const EDUCATION_DATA: Education = {
     'Web Architecture & Responsive UI',
   ],
 };
+
+export const SCHOOL_EDUCATION_DATA: SchoolEducationItem[] = [
+  {
+    id: '12th',
+    level: '12th Standard (Higher Secondary / HSC)',
+    standardTitle: 'Higher Secondary Course – Second Year Mark Certificate',
+    certificateTitle: 'State Board of School Examinations, Tamil Nadu',
+    schoolName: 'St. Britto Hr. Sec. School, Gnanaolivupuram, Madurai',
+    schoolTamilName: 'புனித பிரி்ட்டோ மேனிலைப்பள்ளி – மதுரை',
+    board: 'Tamil Nadu State Board',
+    year: '2022 – 2024',
+    session: 'MAR 2024 (மார்ச் 2024)',
+    percentage: 85,
+    percentageDisplay: '85%',
+    totalMarks: 510,
+    maxMarks: 600,
+    marksInWords: 'ZERO FIVE ONE ZERO',
+    result: 'PASS',
+    candidateName: 'ARUNPANDI A (அருண்பாண்டி அ)',
+    dob: '18/10/2006',
+    registerNo: '2313167617',
+    certificateNo: '35157003',
+    emisId: '1010839252',
+    tmrCode: 'M1151672 (06.05.2024)',
+    medium: 'Tamil',
+    groupCode: '2503',
+    groupName: 'பொதுக்கல்வி / GENERAL EDUCATION',
+    color: 'from-cyan-400 via-blue-500 to-indigo-600',
+    glowColor: 'rgba(6, 182, 212, 0.4)',
+    badge: 'HSC First Class with Distinction',
+    marksheetFilePath: '/marksheets/12th_marksheet_arun_pandi.svg',
+    highlights: [
+      'Scored 94/100 in Chemistry, 93/100 in Tamil, and 86/100 in Mathematics and Biology.',
+      'Achieved total aggregate marks of 510 out of 600 (85.0%) in General Education science group.',
+      'Developed strong analytical and problem-solving skills in Physics, Chemistry, and Mathematics.',
+    ],
+    subjects: [
+      { name: 'Tamil', tamilName: 'தமிழ்', theory: 83, internal: 10, marksObtained: 93, maxMarks: 100, marksInWords: 'ZERO NINE THREE', status: 'PASS' },
+      { name: 'English', tamilName: 'ஆங்கிலம்', theory: 57, internal: 10, marksObtained: 67, maxMarks: 100, marksInWords: 'ZERO SIX SEVEN', status: 'PASS' },
+      { name: 'Physics', tamilName: 'இயற்பியல்', theory: 54, practical: 20, internal: 10, marksObtained: 84, maxMarks: 100, marksInWords: 'ZERO EIGHT FOUR', status: 'PASS' },
+      { name: 'Chemistry', tamilName: 'வேதியியல்', theory: 64, practical: 20, internal: 10, marksObtained: 94, maxMarks: 100, marksInWords: 'ZERO NINE FOUR', status: 'PASS' },
+      { name: 'Biology', tamilName: 'உயிரியல்', theory: 56, practical: 20, internal: 10, marksObtained: 86, maxMarks: 100, marksInWords: 'ZERO EIGHT SIX', status: 'PASS' },
+      { name: 'Mathematics', tamilName: 'கணிதவியல்', theory: 76, internal: 10, marksObtained: 86, maxMarks: 100, marksInWords: 'ZERO EIGHT SIX', status: 'PASS' },
+    ],
+  },
+  {
+    id: '10th',
+    level: '10th Standard (Secondary School / SSLC)',
+    standardTitle: 'Secondary School Leaving Certificate (X Standard)',
+    certificateTitle: 'State Board of School Examinations, Tamil Nadu',
+    schoolName: "St. Joseph's High School, Samayanallur, Madurai District",
+    schoolTamilName: 'புனித சூசையப்பர் உயர்நிலைப்பள்ளி சமயநல்லூர் மதுரை',
+    board: 'Tamil Nadu State Board',
+    year: '2021 – 2022',
+    session: 'MAY 2022 (மே 2022)',
+    percentage: 83,
+    percentageDisplay: '83%',
+    totalMarks: 419,
+    maxMarks: 500,
+    marksInWords: 'FOUR ONE NINE',
+    result: 'PASS',
+    candidateName: 'ARUNPANDI A (அருண்பாண்டி அ)',
+    fatherName: 'ALAGAR R (அழகர் ரா)',
+    motherName: 'LAKSHMI A (லெட்சுமி அ)',
+    dob: '18/10/2006',
+    rollNo: '1187314',
+    registerNo: 'XM22R0271187314',
+    certificateNo: '22185266',
+    emisId: '3324070490100001',
+    tmrCode: 'R2178478 (20.06.2022)',
+    medium: 'Tamil',
+    color: 'from-amber-400 via-orange-500 to-rose-500',
+    glowColor: 'rgba(245, 158, 11, 0.4)',
+    badge: 'SSLC First Class with Distinction',
+    marksheetFilePath: '/marksheets/10th_marksheet_arun_pandi.svg',
+    highlights: [
+      'Scored 92/100 in Tamil, 89/100 in Social Science, and 88/100 in English.',
+      'Achieved total aggregate marks of 419 out of 500 (83.8% ~ 83%) in SSLC Board Examination.',
+      'Demonstrated high scholastic excellence across languages, sciences, and mathematics.',
+    ],
+    subjects: [
+      { name: 'Tamil', tamilName: 'தமிழ்', theory: 92, marksObtained: 92, maxMarks: 100, marksInWords: 'ZERO NINE TWO', status: 'PASS' },
+      { name: 'English', tamilName: 'ஆங்கிலம்', theory: 88, marksObtained: 88, maxMarks: 100, marksInWords: 'ZERO EIGHT EIGHT', status: 'PASS' },
+      { name: 'Mathematics', tamilName: 'கணிதம்', theory: 66, marksObtained: 66, maxMarks: 100, marksInWords: 'ZERO SIX SIX', status: 'PASS' },
+      { name: 'Science', tamilName: 'அறிவியல்', theory: 59, practical: 25, marksObtained: 84, maxMarks: 100, marksInWords: 'ZERO EIGHT FOUR', status: 'PASS' },
+      { name: 'Social Science', tamilName: 'சமூக அறிவியல்', theory: 89, marksObtained: 89, maxMarks: 100, marksInWords: 'ZERO EIGHT NINE', status: 'PASS' },
+    ],
+  },
+];
 
 export const SKILL_CATEGORIES: SkillCategory[] = [
   {
