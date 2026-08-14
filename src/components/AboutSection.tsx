@@ -14,9 +14,9 @@ import {
   RotateCcw,
   Maximize2,
   X,
-  Check,
   Briefcase,
-  ShieldCheck
+  ShieldCheck,
+  Lock
 } from 'lucide-react';
 import { PERSONAL_INFO } from '../data/resumeData';
 import { sounds } from '../utils/audio';
@@ -26,18 +26,36 @@ export const AboutSection: React.FC = () => {
   const [isPhotoZoomOpen, setIsPhotoZoomOpen] = useState(false);
   const [dragOver, setDragOver] = useState(false);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
+  const [isEditMode, setIsEditMode] = useState<boolean>(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  // Load custom uploaded photo from localStorage if present
+  // Check for Edit Mode (via ?edit=true in URL or localStorage) & load saved photo
   useEffect(() => {
     try {
+      const params = new URLSearchParams(window.location.search);
+      const isParamEdit = params.get('edit') === 'true' || window.location.hash === '#edit';
+      const isSavedEdit = localStorage.getItem('arun_portfolio_edit_mode') === 'true';
+      setIsEditMode(isParamEdit || isSavedEdit);
+
       const savedPhoto = localStorage.getItem('arun_portfolio_profile_photo');
       if (savedPhoto) {
         setPhotoUrl(savedPhoto);
       }
     } catch (e) {
-      console.warn('Could not read photo from localStorage:', e);
+      console.warn('Could not initialize photo/edit state:', e);
     }
+
+    const handleHashOrUrl = () => {
+      const params = new URLSearchParams(window.location.search);
+      setIsEditMode(params.get('edit') === 'true' || window.location.hash === '#edit');
+    };
+
+    window.addEventListener('hashchange', handleHashOrUrl);
+    window.addEventListener('popstate', handleHashOrUrl);
+    return () => {
+      window.removeEventListener('hashchange', handleHashOrUrl);
+      window.removeEventListener('popstate', handleHashOrUrl);
+    };
   }, []);
 
   const showToast = (msg: string) => {
@@ -81,6 +99,7 @@ export const AboutSection: React.FC = () => {
   };
 
   const handleDrop = (e: React.DragEvent) => {
+    if (!isEditMode) return;
     e.preventDefault();
     setDragOver(false);
     if (e.dataTransfer.files && e.dataTransfer.files[0]) {
@@ -142,7 +161,7 @@ export const AboutSection: React.FC = () => {
 
   return (
     <section id="about" className="py-24 px-4 sm:px-6 lg:px-8 relative z-10">
-      {/* Hidden file input for actual photo upload */}
+      {/* Hidden file input for actual photo upload (only triggered in edit mode) */}
       <input
         type="file"
         ref={fileInputRef}
@@ -168,7 +187,7 @@ export const AboutSection: React.FC = () => {
           </p>
         </div>
 
-        {/* Profile Card with Original Photo & Image Upload Option */}
+        {/* Profile Card with Original Photo Frame */}
         <div className="mb-10 glass-card rounded-2xl sm:rounded-3xl p-6 sm:p-8 border border-cyan-500/30 relative overflow-hidden shadow-[0_0_40px_rgba(6,182,212,0.15)]">
           
           {/* Subtle Ambient Background Gradient */}
@@ -177,7 +196,7 @@ export const AboutSection: React.FC = () => {
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             
-            {/* Left: Original Photo Frame with Upload Trigger */}
+            {/* Left: Original Photo in Clean Frame */}
             <div className="lg:col-span-4 flex flex-col items-center">
               <div className="relative w-full max-w-[280px] sm:max-w-[320px] group">
                 
@@ -186,18 +205,22 @@ export const AboutSection: React.FC = () => {
 
                 <div 
                   className={`relative rounded-xl overflow-hidden bg-[#070b14] border-2 transition-all duration-300 aspect-[4/5] ${
-                    dragOver 
+                    isEditMode && dragOver 
                       ? 'border-cyan-400 bg-cyan-500/10 shadow-[0_0_30px_rgba(6,182,212,0.6)]' 
                       : 'border-cyan-500/40 hover:border-cyan-400'
                   }`}
                   onDragOver={(e) => {
-                    e.preventDefault();
-                    setDragOver(true);
+                    if (isEditMode) {
+                      e.preventDefault();
+                      setDragOver(true);
+                    }
                   }}
-                  onDragLeave={() => setDragOver(false)}
+                  onDragLeave={() => {
+                    if (isEditMode) setDragOver(false);
+                  }}
                   onDrop={handleDrop}
                 >
-                  {/* Exact Uploaded Photo Display */}
+                  {/* Exact Uploaded / Original Photo Display */}
                   <img
                     src={photoUrl}
                     alt="Arun Pandi A Profile Photo"
@@ -234,32 +257,37 @@ export const AboutSection: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Upload & Management Controls */}
-                <div className="mt-3 flex items-center gap-2 justify-center">
-                  <button
-                    onClick={() => {
-                      sounds.playClick();
-                      fileInputRef.current?.click();
-                    }}
-                    className="flex-1 py-2 px-3 rounded-xl bg-gradient-to-r from-cyan-500 to-indigo-600 hover:from-cyan-400 hover:to-indigo-500 text-white font-mono text-xs font-bold flex items-center justify-center gap-2 transition-all cursor-pointer shadow-[0_0_15px_rgba(6,182,212,0.3)]"
-                    id="about-upload-photo-btn"
-                  >
-                    <Upload className="w-3.5 h-3.5" />
-                    <span>Upload Photo</span>
-                  </button>
+                {/* Edit Controls: ONLY VISIBLE IN EDIT MODE (?edit=true), completely hidden for public visitors */}
+                {isEditMode && (
+                  <div className="mt-3 w-full animate-fade-in">
+                    <div className="flex items-center gap-2 justify-center">
+                      <button
+                        onClick={() => {
+                          sounds.playClick();
+                          fileInputRef.current?.click();
+                        }}
+                        className="flex-1 py-2 px-3 rounded-xl bg-gradient-to-r from-cyan-500 to-indigo-600 hover:from-cyan-400 hover:to-indigo-500 text-white font-mono text-xs font-bold flex items-center justify-center gap-2 transition-all cursor-pointer shadow-[0_0_15px_rgba(6,182,212,0.3)]"
+                        id="about-upload-photo-btn"
+                      >
+                        <Upload className="w-3.5 h-3.5" />
+                        <span>Upload Photo (Edit Mode)</span>
+                      </button>
 
-                  <button
-                    onClick={handleResetToDefault}
-                    className="p-2 rounded-xl bg-slate-900/80 hover:bg-slate-800 text-slate-400 hover:text-slate-200 border border-slate-700 transition-colors cursor-pointer text-xs"
-                    title="Reset Photo"
-                  >
-                    <RotateCcw className="w-3.5 h-3.5" />
-                  </button>
-                </div>
+                      <button
+                        onClick={handleResetToDefault}
+                        className="p-2 rounded-xl bg-slate-900/80 hover:bg-slate-800 text-slate-400 hover:text-slate-200 border border-slate-700 transition-colors cursor-pointer text-xs"
+                        title="Reset Photo"
+                      >
+                        <RotateCcw className="w-3.5 h-3.5" />
+                      </button>
+                    </div>
 
-                <div className="text-[11px] font-mono text-center text-slate-400 mt-1.5">
-                  Drag & drop or click upload to set your photo
-                </div>
+                    <div className="text-[11px] font-mono text-center text-cyan-400/80 mt-1.5 flex items-center justify-center gap-1">
+                      <Sparkles className="w-3 h-3" />
+                      <span>Edit Mode Active • Drag & drop or click upload</span>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
 
@@ -436,7 +464,7 @@ export const AboutSection: React.FC = () => {
               </div>
               <div>
                 <h3 className="text-base font-bold text-white font-['Outfit']">{PERSONAL_INFO.name}</h3>
-                <p className="text-xs text-slate-400 font-mono">Actual Uploaded Photo • Full View</p>
+                <p className="text-xs text-slate-400 font-mono">Profile Portrait • Full Resolution</p>
               </div>
             </div>
 
@@ -450,20 +478,24 @@ export const AboutSection: React.FC = () => {
             </div>
 
             <div className="mt-4 flex items-center justify-between w-full text-xs font-mono text-slate-400 pt-2 border-t border-slate-800">
-              <button
-                onClick={() => {
-                  sounds.playClick();
-                  fileInputRef.current?.click();
-                }}
-                className="px-3.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-cyan-300 flex items-center gap-1.5 transition-colors cursor-pointer"
-              >
-                <Upload className="w-3.5 h-3.5" />
-                <span>Upload New File</span>
-              </button>
+              {isEditMode ? (
+                <button
+                  onClick={() => {
+                    sounds.playClick();
+                    fileInputRef.current?.click();
+                  }}
+                  className="px-3.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-cyan-300 flex items-center gap-1.5 transition-colors cursor-pointer"
+                >
+                  <Upload className="w-3.5 h-3.5" />
+                  <span>Upload New File</span>
+                </button>
+              ) : (
+                <span className="text-slate-500">{PERSONAL_INFO.subHeadline}</span>
+              )}
 
               <button
                 onClick={() => setIsPhotoZoomOpen(false)}
-                className="px-4 py-1.5 rounded-lg bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold transition-colors cursor-pointer"
+                className="px-4 py-1.5 rounded-lg bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold transition-colors cursor-pointer ml-auto"
               >
                 Close
               </button>
