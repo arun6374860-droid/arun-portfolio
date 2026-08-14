@@ -1,0 +1,423 @@
+import { Project, SkillCategory, Education, Certification, HackathonExperience } from '../types';
+
+export const PERSONAL_INFO = {
+  name: 'Arun Pandi A',
+  headline: 'Software Developer | C & Web Development',
+  subHeadline: 'Electronics & Communication Engineering Undergraduate (Expected 2028 | CGPA: 8.2/10.0)',
+  email: 'arun6374860@gmail.com',
+  phone: '+91 6374868926',
+  location: 'Madurai, Tamil Nadu, India',
+  linkedinUrl: 'https://linkedin.com/in/arun-pandi-a43a003a9',
+  linkedinUsername: 'linkedin.com/in/arun-pandi-a43a003a9',
+  githubUrl: 'https://github.com/arun6374860-droid',
+  githubUsername: 'github.com/arun6374860-droid',
+  seekingRoles: ['Software Developer', 'VLSI Design Engineer', 'Embedded Systems Engineer', 'Full Stack / Python Intern'],
+  summary:
+    'Electronics and Communication Engineering undergraduate (Expected 2028, GPA: 8.2/10) with hands-on experience in software development, IoT, and embedded systems. Proficient in C, C++, Python, and basic web development with project experience spanning CRM dashboards, weather applications, and hardware-software integrated systems. Participated in a 36-hour hackathon focused on Madurai Clean City initiatives. Seeking entry-level roles as a Software Developer or VLSI Design Engineer.',
+  stats: [
+    { label: 'CGPA', value: '8.2 / 10', description: 'Sethu Institute of Technology' },
+    { label: 'Core Projects', value: '5+', description: 'Web, Python, IoT & C Systems' },
+    { label: 'Hackathon Sprint', value: '36 Hrs', description: 'Madurai Clean City Initiative' },
+    { label: 'Certifications', value: '4+', description: 'IoT, NIT & SSN Symposiums' },
+  ],
+};
+
+export const EDUCATION_DATA: Education = {
+  degree: 'Bachelor of Engineering (B.E.) – Electronics and Communication Engineering',
+  institution: 'Sethu Institute of Technology',
+  location: 'Madurai, Tamil Nadu',
+  expectedGraduation: '2028',
+  cgpa: '8.2 / 10.0',
+  details: [
+    'Electronics and Communication Engineering undergraduate with a strong academic track record (CGPA: 8.2/10.0).',
+    'Specializing in digital logic, embedded systems programming, microcontrollers, and modern software development.',
+    'Active participant in inter-college technical symposiums and state-level innovation competitions.',
+  ],
+  coursework: [
+    'Digital Electronics & Logic Design',
+    'Microcontroller Programming & Architecture',
+    'Circuit Analysis & Optimization',
+    'Object-Oriented Programming (C++/Python)',
+    'Data Structures & Algorithms in C',
+    'Sensor Interfacing & Embedded Protocols',
+    'Web Architecture & Responsive UI',
+  ],
+};
+
+export const SKILL_CATEGORIES: SkillCategory[] = [
+  {
+    title: 'Programming Languages',
+    iconName: 'Code',
+    description: 'Core foundational and high-level programming languages for systems and applications.',
+    skills: [
+      {
+        name: 'C',
+        level: 'Proficient',
+        percentage: 90,
+        badge: 'Core Systems',
+        color: '#06b6d4',
+        description: 'Microcontroller programming, pointer memory management, digital logic & embedded firmware.',
+      },
+      {
+        name: 'C++',
+        level: 'Proficient',
+        percentage: 85,
+        badge: 'OOP & Algorithms',
+        color: '#3b82f6',
+        description: 'Object-oriented systems, data structures, modular software architecture and algorithms.',
+      },
+      {
+        name: 'Python',
+        level: 'Proficient',
+        percentage: 82,
+        badge: 'Backend & Data',
+        color: '#eab308',
+        description: 'Backend logic, data operations, summary reporting, scripting and automation.',
+      },
+      {
+        name: 'Basic Java',
+        level: 'Familiar',
+        percentage: 68,
+        badge: 'Object-Oriented',
+        color: '#f97316',
+        description: 'Core object-oriented principles, classes, methods, and syntax fundamentals.',
+      },
+    ],
+  },
+  {
+    title: 'Web Development',
+    iconName: 'Globe',
+    description: 'Modern front-end styling, structure, and dynamic client-side scripting.',
+    skills: [
+      {
+        name: 'HTML5',
+        level: 'Proficient',
+        percentage: 95,
+        badge: 'Markup & Semantics',
+        color: '#ef4444',
+        description: 'Semantic structure, accessibility, forms, media integration, clean layout trees.',
+      },
+      {
+        name: 'CSS3',
+        level: 'Proficient',
+        percentage: 90,
+        badge: 'Styling & Layouts',
+        color: '#0ea5e9',
+        description: 'Modern flexbox, grid, glassmorphism, responsive visual design and smooth transitions.',
+      },
+      {
+        name: 'Basic JavaScript',
+        level: 'Skilled',
+        percentage: 78,
+        badge: 'DOM & API Logic',
+        color: '#facc15',
+        description: 'Dynamic UI rendering, JSON parsing, REST API consumption, DOM manipulation.',
+      },
+      {
+        name: 'Responsive Design',
+        level: 'Proficient',
+        percentage: 92,
+        badge: 'Cross-Device',
+        color: '#10b981',
+        description: 'Fluid mobile, tablet, and desktop viewing experiences across all modern screen viewports.',
+      },
+    ],
+  },
+  {
+    title: 'Tools & IDEs',
+    iconName: 'Wrench',
+    description: 'Development environments, hardware toolchains, and version control.',
+    skills: [
+      {
+        name: 'VS Code',
+        level: 'Daily Driver',
+        percentage: 95,
+        badge: 'Primary IDE',
+        color: '#0284c7',
+        description: 'Extensions, debugging, multi-language development workflows for C, Python, and Web.',
+      },
+      {
+        name: 'Arduino IDE',
+        level: 'Proficient',
+        percentage: 90,
+        badge: 'Embedded Toolchain',
+        color: '#0d9488',
+        description: 'Board programming, serial monitor debugging, sensor library integration, firmware flashing.',
+      },
+      {
+        name: 'Git',
+        level: 'Working Knowledge',
+        percentage: 80,
+        badge: 'Version Control',
+        color: '#f43f5e',
+        description: 'Source control, branching, repository management, collaborative versioning.',
+      },
+    ],
+  },
+  {
+    title: 'Engineering Domains',
+    iconName: 'Cpu',
+    description: 'Key technical domains combining hardware engineering and software systems.',
+    skills: [
+      {
+        name: 'Software Development',
+        level: 'Primary Focus',
+        percentage: 88,
+        badge: 'Engineering',
+        color: '#8b5cf6',
+        description: 'End-to-end application architecture, algorithms, modular coding, and problem solving.',
+      },
+      {
+        name: 'IoT (Internet of Things)',
+        level: 'Certified Level 1 & 2',
+        percentage: 85,
+        badge: 'Smart Systems',
+        color: '#06b6d4',
+        description: 'Connected devices, sensor networks, wireless communication protocols, remote telemetry.',
+      },
+      {
+        name: 'Embedded Systems',
+        level: 'Proficient',
+        percentage: 86,
+        badge: 'Hardware/Software',
+        color: '#10b981',
+        description: 'Microcontroller programming in C, ultrasonic sensors, Bluetooth modules, motor controllers.',
+      },
+      {
+        name: 'VLSI Design Engineering',
+        level: 'Aspiring / Foundation',
+        percentage: 75,
+        badge: 'Silicon Design',
+        color: '#a855f7',
+        description: 'Digital logic, circuit analysis, semiconductor principles, hardware description fundamentals.',
+      },
+    ],
+  },
+  {
+    title: 'Spoken Languages',
+    iconName: 'Languages',
+    description: 'Multilingual communication skills for global and regional team collaboration.',
+    skills: [
+      {
+        name: 'Tamil',
+        level: 'Native',
+        percentage: 100,
+        badge: 'Native Fluency',
+        color: '#ec4899',
+        description: 'Mother tongue, fully fluent in verbal and written technical and business communication.',
+      },
+      {
+        name: 'English',
+        level: 'Proficient',
+        percentage: 88,
+        badge: 'Professional Working',
+        color: '#3b82f6',
+        description: 'Fluent in engineering documentation, technical presentations, and cross-functional team collaboration.',
+      },
+      {
+        name: 'German',
+        level: 'Learning',
+        percentage: 35,
+        badge: 'Elementary / Learning',
+        color: '#eab308',
+        description: 'Actively expanding multilingual communication with basic conversational grammar and vocabulary.',
+      },
+    ],
+  },
+];
+
+export const PROJECTS_DATA: Project[] = [
+  {
+    id: 'crm-dashboard',
+    title: 'CRM Dashboard',
+    category: 'Web Development',
+    subtitle: 'Web Development / Python Backend Data Engine',
+    description:
+      'Built a Customer Relationship Management (CRM) dashboard to manage and visualise customer data efficiently, complete with data filtering and summary reporting.',
+    bullets: [
+      'Built a Customer Relationship Management (CRM) dashboard to manage and visualise customer data efficiently.',
+      'Developed interactive UI components using HTML, CSS, and basic JavaScript for data display and filtering.',
+      'Implemented backend logic using Python to handle data operations and generate summary reports.',
+    ],
+    technologies: ['Python', 'HTML5', 'CSS3', 'JavaScript', 'Data Filtering', 'Report Generation'],
+    featured: true,
+    color: 'from-blue-500 via-indigo-500 to-cyan-400',
+    glowColor: 'rgba(59, 130, 246, 0.4)',
+    liveDemoType: 'crm',
+    liveUrl: 'https://arun-web-seven.vercel.app',
+    githubUrl: 'https://github.com/arun6374860-droid/crm-dashboard',
+  },
+  {
+    id: 'weather-application',
+    title: 'Weather Application',
+    category: 'Web Development',
+    subtitle: 'Web Development / Public API Integration',
+    description:
+      'Developed a clean, responsive weather application that fetches and renders live atmospheric metrics from a public weather REST API with seamless JSON parsing.',
+    bullets: [
+      'Developed a weather application that fetches and displays real-time weather data using a public weather API.',
+      'Designed a clean, responsive front-end using HTML and CSS for cross-device compatibility.',
+      'Implemented JavaScript logic for API calls, JSON parsing, and dynamic content rendering.',
+    ],
+    technologies: ['JavaScript', 'REST API', 'JSON Parsing', 'HTML5', 'CSS3', 'Responsive UI'],
+    featured: true,
+    color: 'from-cyan-400 via-teal-500 to-emerald-400',
+    glowColor: 'rgba(6, 182, 212, 0.4)',
+    liveDemoType: 'weather',
+    liveUrl: 'https://arun-weather.vercel.app',
+    githubUrl: 'https://github.com/arun6374860-droid/weather-application',
+  },
+  {
+    id: 'agricultural-rover',
+    title: 'Agricultural Rover',
+    category: 'IoT / Embedded Systems',
+    subtitle: 'IoT / Embedded Systems / C / Microcontroller Programming',
+    description:
+      'Autonomous agricultural rover engineered with microcontroller programming in C to perform continuous field monitoring, soil/crop data acquisition, and navigation.',
+    bullets: [
+      'Built an autonomous rover for agricultural field monitoring using microcontroller programming in C.',
+      'Integrated sensors for real-time data acquisition and programmed navigation algorithms in Arduino IDE.',
+      'Engineered real-time telemetry processing for smart precision agriculture operations.',
+    ],
+    technologies: ['C Language', 'Microcontrollers', 'Arduino IDE', 'Agricultural Sensors', 'Autonomous Navigation', 'IoT'],
+    featured: true,
+    color: 'from-emerald-400 via-green-500 to-lime-400',
+    glowColor: 'rgba(16, 185, 129, 0.4)',
+    liveDemoType: 'agri-rover',
+    githubUrl: 'https://github.com/arun6374860-droid/agricultural-rover',
+  },
+  {
+    id: 'bluetooth-voice-emergency-system',
+    title: 'Bluetooth Voice Emergency System',
+    category: 'IoT / Embedded Systems',
+    subtitle: 'IoT / Embedded Systems / Wireless Modules',
+    description:
+      'A life-safety emergency alert system combining Bluetooth HC-05 modules with Arduino to interpret distress voice commands and trigger real-time alerts.',
+    bullets: [
+      'Developed a voice-activated emergency alert system using Bluetooth (HC-05) modules and Arduino.',
+      'System processes voice commands and transmits distress signals to predefined contacts in real time.',
+      'Designed fail-safe serial communication protocols between voice input modules and Arduino controller.',
+    ],
+    technologies: ['Arduino', 'Bluetooth (HC-05)', 'Embedded Systems', 'Voice Processing', 'Emergency Signaling', 'C/C++'],
+    featured: true,
+    color: 'from-purple-500 via-pink-500 to-rose-400',
+    glowColor: 'rgba(168, 85, 247, 0.4)',
+    liveDemoType: 'bluetooth-alert',
+    githubUrl: 'https://github.com/arun6374860-droid/bluetooth-voice-emergency-system',
+  },
+  {
+    id: 'obstacle-avoiding-rover',
+    title: 'Obstacle Avoiding Rover',
+    category: 'IoT / Embedded Systems',
+    subtitle: 'Embedded Systems / C / Ultrasonic Sensor Integration',
+    description:
+      'Engineered an Arduino-controlled autonomous robotic rover equipped with ultrasonic distance sensors to calculate proximity and autonomously dodge obstacles.',
+    bullets: [
+      'Engineered an Arduino-powered rover with ultrasonic sensors to autonomously detect and avoid obstacles.',
+      'Applied digital logic and circuit analysis principles to optimise sensor response and motor control.',
+      'Implemented real-time PWM motor steering and spatial distance threshold algorithms in C.',
+    ],
+    technologies: ['Embedded C', 'Arduino', 'Ultrasonic Sensors', 'Digital Logic', 'Circuit Analysis', 'Motor Control (PWM)'],
+    featured: true,
+    color: 'from-amber-400 via-orange-500 to-red-500',
+    glowColor: 'rgba(245, 158, 11, 0.4)',
+    liveDemoType: 'obstacle-rover',
+    githubUrl: 'https://github.com/arun6374860-droid/obstacle-avoiding-rover',
+  },
+];
+
+export const HACKATHON_DATA: HackathonExperience = {
+  title: '36-Hour Hackathon',
+  initiative: 'Madurai Clean City Initiative',
+  duration: '36-Hour Non-Stop Hackathon',
+  location: 'Madurai, Tamil Nadu',
+  description:
+    'Participated in an intensive 36-hour non-stop hackathon focused on developing high-impact technological solutions for urban cleanliness and smart civic waste management in Madurai.',
+  keyContributions: [
+    'Participated in a 36-hour non-stop hackathon focused on developing tech solutions for urban cleanliness in Madurai.',
+    'Collaborated in a team to design and prototype a solution addressing civic waste management challenges.',
+    'Demonstrated problem-solving ability, teamwork, and ability to perform under pressure within tight deadlines.',
+    'Integrated hardware sensor concepts with data reporting logic to address municipal cleanliness pain points.',
+  ],
+  techFocus: ['Civic Tech', 'Waste Management Solutions', 'Rapid Prototyping', 'Team Collaboration', 'Under-Pressure Delivery'],
+};
+
+export const CERTIFICATIONS_DATA: Certification[] = [
+  {
+    id: 'iot-level-1',
+    title: 'IoT Fundamentals – Level 1 Certification',
+    issuer: 'IoT Specialist Certification Authority',
+    level: 'Level 1',
+    tag: 'IoT Core',
+    category: 'Internet of Things',
+    description:
+      'Comprehensive certification validating foundational knowledge of IoT architecture, sensor integration, microcontroller interfaces, and device networking principles.',
+    skillsGained: ['IoT Architectures', 'Sensor Interfaces', 'Device Connectivity', 'Hardware Telemetry'],
+  },
+  {
+    id: 'iot-level-2',
+    title: 'IoT Fundamentals – Level 2 Certification',
+    issuer: 'IoT Specialist Certification Authority',
+    level: 'Level 2',
+    tag: 'Advanced IoT',
+    category: 'Internet of Things',
+    description:
+      'Advanced certification covering embedded networking, edge data processing, wireless protocols, and hardware-software system integration.',
+    skillsGained: ['Edge Computing', 'Wireless Protocols (Bluetooth/WiFi)', 'Sensor Data Processing', 'Embedded Systems'],
+  },
+  {
+    id: 'symposium-nit',
+    title: 'Technical Symposium Certificate',
+    issuer: 'NIT (National Institute of Technology)',
+    tag: 'NIT Certified',
+    category: 'National Level Technical Symposium',
+    description:
+      'Awarded certificate for active participation and technical showcase at the prestigious National Institute of Technology technical symposium.',
+    skillsGained: ['Technical Presentation', 'Engineering Innovation', 'Peer Collaboration', 'Competitive Problem Solving'],
+  },
+  {
+    id: 'symposium-ssn',
+    title: 'Technical Symposium Certificate',
+    issuer: 'SSN College of Engineering',
+    tag: 'SSN Certified',
+    category: 'State Level Technical Symposium',
+    description:
+      'Recognized for participation in high-level engineering challenges and project demonstrations at SSN College of Engineering.',
+    skillsGained: ['Engineering Problem Solving', 'Hardware Demonstrations', 'Domain Exchange', 'Technical Inquisitiveness'],
+  },
+];
+
+export const ACHIEVEMENTS_DATA = [
+  {
+    title: '36-Hour Hackathon Finalist / Contributor',
+    subtitle: 'Madurai Clean City Initiative',
+    description: 'Engineered tech solutions for civic urban cleanliness under non-stop 36-hour sprint pressure in a collaborative multidisciplinary team.',
+    icon: 'Flame',
+    highlight: '36h Sprint',
+    color: '#f59e0b',
+  },
+  {
+    title: 'Academic Excellence in Electronics & Communication',
+    subtitle: 'Sethu Institute of Technology (Expected 2028)',
+    description: 'Maintained a strong 8.2 / 10.0 CGPA throughout rigorous coursework in digital circuits, microcontrollers, and computing systems.',
+    icon: 'GraduationCap',
+    highlight: '8.2 / 10 CGPA',
+    color: '#06b6d4',
+  },
+  {
+    title: 'Premier Institutional Recognition at NIT & SSN',
+    subtitle: 'National & State Level Engineering Symposiums',
+    description: 'Earned technical symposium credentials from top institutions including National Institute of Technology (NIT) and SSN College of Engineering.',
+    icon: 'Award',
+    highlight: 'NIT & SSN',
+    color: '#8b5cf6',
+  },
+  {
+    title: 'Proactive Extra-Curricular Technical Leadership',
+    subtitle: 'Multiple Inter-College Technical Symposiums',
+    description: 'Attended multiple inter-college technical symposiums, continually showcasing initiative, hardware experimentation, and knowledge beyond classroom learning.',
+    icon: 'Sparkles',
+    highlight: 'Beyond Classroom',
+    color: '#10b981',
+  },
+];
