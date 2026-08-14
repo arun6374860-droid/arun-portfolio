@@ -54,7 +54,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ openResumeModal }) => 
 
   return (
     <section id="hero" className="relative min-h-screen pt-32 pb-20 px-4 sm:px-6 lg:px-8 flex flex-col justify-center items-center">
-      <div className="max-w-4xl mx-auto w-full flex flex-col items-center text-center space-y-7 z-10">
+      <div className="max-w-4xl mx-auto w-full flex flex-col items-center text-center space-y-6 z-10">
         
         {/* Status Badge */}
         <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-slate-900/90 border border-cyan-500/30 shadow-[0_0_20px_rgba(6,182,212,0.25)] text-xs font-mono text-cyan-300">
@@ -66,7 +66,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ openResumeModal }) => 
         </div>
 
         {/* Name & Headline */}
-        <div className="space-y-3 flex flex-col items-center">
+        <div className="space-y-2 flex flex-col items-center">
           <h2 className="text-sm sm:text-base font-mono uppercase tracking-[0.25em] text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-teal-300 to-indigo-400 font-semibold flex items-center justify-center gap-2">
             <Sparkles className="w-4 h-4 text-cyan-400" />
             Hello, I am

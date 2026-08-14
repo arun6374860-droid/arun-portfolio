@@ -22,7 +22,7 @@ import { PERSONAL_INFO } from '../data/resumeData';
 import { sounds } from '../utils/audio';
 
 export const AboutSection: React.FC = () => {
-  const [photoUrl, setPhotoUrl] = useState<string>('/images/arun_photo.jpg');
+  const [photoUrl, setPhotoUrl] = useState<string>(PERSONAL_INFO.photoUrl);
   const [isPhotoZoomOpen, setIsPhotoZoomOpen] = useState(false);
   const [dragOver, setDragOver] = useState(false);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
@@ -114,7 +114,7 @@ export const AboutSection: React.FC = () => {
     } catch (err) {
       console.warn(err);
     }
-    setPhotoUrl('/images/arun_photo.jpg');
+    setPhotoUrl(PERSONAL_INFO.photoUrl);
     sounds.playClick();
     showToast('Reset to original photo');
     if (fileInputRef.current) {
@@ -227,6 +227,12 @@ export const AboutSection: React.FC = () => {
                     className="w-full h-full object-cover object-[center_15%] transition-transform duration-500 group-hover:scale-[1.02]"
                     referrerPolicy="no-referrer"
                     id="about-profile-photo-img"
+                    onError={(e) => {
+                      const target = e.currentTarget as HTMLImageElement;
+                      if (target.src !== PERSONAL_INFO.photoUrl) {
+                        target.src = PERSONAL_INFO.photoUrl;
+                      }
+                    }}
                   />
 
                   {/* Gradient bottom shading */}
