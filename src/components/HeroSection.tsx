@@ -5,10 +5,15 @@ import {
   FileText, 
   Send, 
   ChevronDown,
-  Github
+  Github,
+  Code2,
+  Cpu,
+  Terminal,
+  Zap
 } from 'lucide-react';
 import { PERSONAL_INFO } from '../data/resumeData';
 import { sounds } from '../utils/audio';
+import { TiltCard } from './TiltCard';
 
 interface HeroSectionProps {
   openResumeModal: () => void;
@@ -30,10 +35,10 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ openResumeModal }) => 
   // Typewriter effect
   useEffect(() => {
     const currentFullRole = roles[roleIndex];
-    let typingSpeed = isDeleting ? 40 : 80;
+    let typingSpeed = isDeleting ? 35 : 75;
 
     if (!isDeleting && displayedRole === currentFullRole) {
-      const timeout = setTimeout(() => setIsDeleting(true), 1800);
+      const timeout = setTimeout(() => setIsDeleting(true), 2000);
       return () => clearTimeout(timeout);
     } else if (isDeleting && displayedRole === '') {
       setIsDeleting(false);
@@ -53,34 +58,56 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ openResumeModal }) => 
   }, [displayedRole, isDeleting, roleIndex, roles]);
 
   return (
-    <section id="hero" className="relative min-h-screen pt-32 pb-20 px-4 sm:px-6 lg:px-8 flex flex-col justify-center items-center">
-      <div className="max-w-4xl mx-auto w-full flex flex-col items-center text-center space-y-6 z-10">
+    <section id="hero" className="relative min-h-screen pt-32 pb-20 px-4 sm:px-6 lg:px-8 flex flex-col justify-center items-center overflow-hidden">
+      
+      {/* Floating glowing background decorative elements */}
+      <div className="absolute top-1/4 left-10 w-72 h-72 bg-cyan-500/10 rounded-full blur-3xl animate-blob pointer-events-none" />
+      <div className="absolute bottom-1/4 right-10 w-80 h-80 bg-purple-600/15 rounded-full blur-3xl animate-blob animation-delay-2000 pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40rem] h-[40rem] bg-indigo-600/10 rounded-full blur-[120px] pointer-events-none" />
+
+      {/* Floating tech nodes in background */}
+      <div className="hidden lg:flex absolute top-36 left-[12%] items-center gap-2 px-3 py-1.5 rounded-2xl glass-card border border-cyan-500/30 text-cyan-300 text-xs font-mono shadow-[0_0_20px_rgba(6,182,212,0.2)] animate-pulse pointer-events-none">
+        <Code2 className="w-3.5 h-3.5 text-cyan-400" />
+        <span>C & C++ Architecture</span>
+      </div>
+
+      <div className="hidden lg:flex absolute top-48 right-[12%] items-center gap-2 px-3 py-1.5 rounded-2xl glass-card border border-purple-500/30 text-purple-300 text-xs font-mono shadow-[0_0_20px_rgba(168,85,247,0.2)] animate-pulse animation-delay-2000 pointer-events-none">
+        <Cpu className="w-3.5 h-3.5 text-purple-400" />
+        <span>IoT & Embedded Rovers</span>
+      </div>
+
+      <div className="hidden lg:flex absolute bottom-36 left-[14%] items-center gap-2 px-3 py-1.5 rounded-2xl glass-card border border-emerald-500/30 text-emerald-300 text-xs font-mono shadow-[0_0_20px_rgba(16,185,129,0.2)] animate-pulse animation-delay-4000 pointer-events-none">
+        <Terminal className="w-3.5 h-3.5 text-emerald-400" />
+        <span>Python & Web Engines</span>
+      </div>
+
+      <div className="max-w-4xl mx-auto w-full flex flex-col items-center text-center space-y-7 z-10">
         
-        {/* Status Badge */}
-        <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-slate-900/90 border border-cyan-500/30 shadow-[0_0_20px_rgba(6,182,212,0.25)] text-xs font-mono text-cyan-300">
+        {/* Status Badge with Neon Ripple */}
+        <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-slate-900/90 border border-cyan-500/40 shadow-[0_0_25px_rgba(6,182,212,0.3)] text-xs font-mono text-cyan-300 backdrop-blur-md hover:border-cyan-400 transition-all">
           <span className="relative flex h-2.5 w-2.5">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
             <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
           </span>
-          <span>Seeking Software Developer & VLSI Internships / Placements</span>
+          <span className="font-semibold tracking-wide">Seeking Software Developer &amp; VLSI Internships / Placements</span>
         </div>
 
         {/* Name & Headline */}
-        <div className="space-y-2 flex flex-col items-center">
-          <h2 className="text-sm sm:text-base font-mono uppercase tracking-[0.25em] text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-teal-300 to-indigo-400 font-semibold flex items-center justify-center gap-2">
-            <Sparkles className="w-4 h-4 text-cyan-400" />
+        <div className="space-y-3 flex flex-col items-center">
+          <h2 className="text-xs sm:text-sm font-mono uppercase tracking-[0.3em] text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-teal-300 to-indigo-400 font-bold flex items-center justify-center gap-2">
+            <Sparkles className="w-4 h-4 text-cyan-400 animate-spin" style={{ animationDuration: '8s' }} />
             Hello, I am
           </h2>
-          <h1 className="text-4xl sm:text-6xl xl:text-7xl font-extrabold tracking-tight text-white font-['Outfit'] leading-[1.08]">
+          <h1 className="text-4xl sm:text-6xl xl:text-7xl font-extrabold tracking-tight text-white font-['Outfit'] leading-[1.08] drop-shadow-[0_4px_25px_rgba(0,0,0,0.6)]">
             {PERSONAL_INFO.name}
           </h1>
           
-          {/* Dynamic Typewriter Text */}
+          {/* Dynamic Typewriter Text with Neon Caret */}
           <div className="h-10 sm:h-12 flex items-center justify-center">
-            <span className="text-xl sm:text-3xl font-bold font-mono text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-indigo-400 to-purple-400">
+            <span className="text-xl sm:text-3xl font-bold font-mono text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-indigo-400 to-purple-400 drop-shadow-[0_0_12px_rgba(6,182,212,0.4)]">
               {displayedRole}
             </span>
-            <span className="w-1 h-7 sm:h-8 bg-cyan-400 ml-1.5 animate-pulse" />
+            <span className="w-1 h-7 sm:h-8 bg-cyan-400 ml-1.5 animate-pulse shadow-[0_0_10px_#06b6d4]" />
           </div>
         </div>
 
@@ -90,27 +117,29 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ openResumeModal }) => 
         </p>
 
         {/* Action CTAs */}
-        <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 pt-2 w-full">
-          {/* View Projects */}
+        <div className="flex flex-wrap items-center justify-center gap-3.5 sm:gap-4 pt-2 w-full">
+          {/* View Projects CTA */}
           <a
             href="#projects"
             onClick={() => sounds.playClick()}
             onMouseEnter={() => sounds.playHover()}
-            className="px-6 py-3.5 rounded-xl bg-gradient-to-r from-cyan-500 via-indigo-600 to-purple-600 text-white font-semibold text-sm shadow-[0_0_25px_rgba(6,182,212,0.4)] hover:shadow-[0_0_35px_rgba(6,182,212,0.7)] hover:scale-[1.03] transition-all flex items-center gap-2 border border-cyan-300/30 cursor-pointer"
+            className="group relative px-7 py-3.5 rounded-xl bg-gradient-to-r from-cyan-500 via-indigo-600 to-purple-600 text-white font-bold text-sm shadow-[0_0_30px_rgba(6,182,212,0.45)] hover:shadow-[0_0_40px_rgba(6,182,212,0.8)] hover:scale-[1.03] transition-all flex items-center gap-2 border border-cyan-300/40 cursor-pointer overflow-hidden"
             id="hero-view-projects-btn"
           >
+            {/* Shimmer animation */}
+            <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none" />
             <span>View Projects</span>
-            <ArrowRight className="w-4 h-4" />
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </a>
 
-          {/* Download Resume */}
+          {/* Download Resume CTA */}
           <button
             onClick={() => {
               sounds.playClick();
               openResumeModal();
             }}
             onMouseEnter={() => sounds.playHover()}
-            className="px-6 py-3.5 rounded-xl glass-card text-white font-semibold text-sm border border-cyan-500/40 hover:border-cyan-400 hover:bg-cyan-500/10 hover:scale-[1.03] transition-all flex items-center gap-2 cursor-pointer shadow-[0_0_15px_rgba(6,182,212,0.15)]"
+            className="px-6 py-3.5 rounded-xl glass-card text-white font-bold text-sm border border-cyan-500/50 hover:border-cyan-400 hover:bg-cyan-500/15 hover:scale-[1.03] transition-all flex items-center gap-2.5 cursor-pointer shadow-[0_0_20px_rgba(6,182,212,0.2)]"
             id="hero-download-resume-btn"
           >
             <FileText className="w-4 h-4 text-cyan-400" />
@@ -122,7 +151,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ openResumeModal }) => 
             href="#contact"
             onClick={() => sounds.playClick()}
             onMouseEnter={() => sounds.playHover()}
-            className="px-5 py-3.5 rounded-xl bg-white/5 hover:bg-white/10 text-slate-200 hover:text-white font-medium text-sm border border-white/10 transition-all flex items-center gap-2 cursor-pointer"
+            className="px-5 py-3.5 rounded-xl bg-white/5 hover:bg-white/10 text-slate-200 hover:text-white font-semibold text-sm border border-white/10 hover:border-purple-500/40 transition-all flex items-center gap-2 cursor-pointer"
             id="hero-contact-btn"
           >
             <Send className="w-4 h-4 text-purple-400" />
@@ -136,7 +165,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ openResumeModal }) => 
             rel="noreferrer"
             onClick={() => sounds.playClick()}
             onMouseEnter={() => sounds.playHover()}
-            className="px-4 py-3.5 rounded-xl bg-white/5 hover:bg-cyan-500/10 text-slate-300 hover:text-cyan-300 font-medium text-sm border border-white/10 hover:border-cyan-500/30 transition-all flex items-center gap-2 cursor-pointer"
+            className="px-4 py-3.5 rounded-xl bg-white/5 hover:bg-cyan-500/10 text-slate-300 hover:text-cyan-300 font-semibold text-sm border border-white/10 hover:border-cyan-500/40 transition-all flex items-center gap-2 cursor-pointer"
             id="hero-github-btn"
             title="GitHub: arun6374860-droid"
           >
@@ -145,19 +174,18 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ openResumeModal }) => 
           </a>
         </div>
 
-        {/* Quick Metrics Bar */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 pt-6 w-full max-w-2xl border-t border-slate-800/80">
+        {/* Quick Metrics Bar with 3D Tilt */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 pt-6 w-full max-w-3xl border-t border-slate-800/80">
           {PERSONAL_INFO.stats.map((stat, i) => (
-            <div
-              key={i}
-              className="glass-card p-3 rounded-xl border border-white/10 hover:border-cyan-500/40 transition-colors text-center"
-            >
-              <div className="text-xl sm:text-2xl font-extrabold font-['Outfit'] text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-indigo-400">
-                {stat.value}
+            <TiltCard key={i} maxTilt={5} scale={1.03}>
+              <div className="glass-card p-3.5 rounded-2xl border border-white/10 hover:border-cyan-500/50 transition-all text-center group h-full flex flex-col justify-center">
+                <div className="text-xl sm:text-2xl font-extrabold font-['Outfit'] text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-indigo-400 group-hover:from-cyan-300 group-hover:to-purple-300 transition-all">
+                  {stat.value}
+                </div>
+                <div className="text-xs font-semibold text-slate-200 mt-1">{stat.label}</div>
+                <div className="text-[10px] text-slate-400 truncate mt-0.5">{stat.description}</div>
               </div>
-              <div className="text-xs font-semibold text-slate-200 mt-0.5">{stat.label}</div>
-              <div className="text-[10px] text-slate-400 truncate">{stat.description}</div>
-            </div>
+            </TiltCard>
           ))}
         </div>
 
@@ -168,12 +196,13 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ openResumeModal }) => 
         <a
           href="#about"
           onClick={() => sounds.playClick()}
-          className="flex flex-col items-center gap-1.5 text-xs font-mono text-slate-400 hover:text-cyan-400 transition-colors animate-bounce cursor-pointer"
+          className="flex flex-col items-center gap-1.5 text-xs font-mono text-slate-400 hover:text-cyan-400 transition-colors animate-bounce cursor-pointer group"
         >
-          <span>Explore Portfolio</span>
-          <ChevronDown className="w-4 h-4" />
+          <span className="group-hover:tracking-wider transition-all">Explore Portfolio</span>
+          <ChevronDown className="w-4 h-4 text-cyan-400" />
         </a>
       </div>
     </section>
   );
 };
+

@@ -14,6 +14,7 @@ import {
 import { CERTIFICATIONS_DATA } from '../data/resumeData';
 import { Certification } from '../types';
 import { sounds } from '../utils/audio';
+import { TiltCard } from './TiltCard';
 
 export const CertificationsSection: React.FC = () => {
   const [activeCert, setActiveCert] = useState<Certification | null>(null);
@@ -24,7 +25,7 @@ export const CertificationsSection: React.FC = () => {
         
         {/* Section Header */}
         <div className="flex flex-col items-center text-center mb-14">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-400 text-xs font-mono mb-3">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-400 text-xs font-mono mb-3 shadow-[0_0_15px_rgba(168,85,247,0.2)]">
             <Award className="w-3.5 h-3.5" />
             <span>06. Credentials & Verified Learning</span>
           </div>
@@ -39,78 +40,79 @@ export const CertificationsSection: React.FC = () => {
         {/* Certifications Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {CERTIFICATIONS_DATA.map((cert, index) => (
-            <div
-              key={cert.id}
-              onMouseEnter={() => sounds.playHover()}
-              className="glass-card rounded-3xl p-6 sm:p-8 border border-white/10 hover:border-purple-500/40 hover:scale-[1.01] transition-all duration-300 relative group flex flex-col justify-between overflow-hidden shadow-xl"
-            >
-              {/* Background ambient glow */}
-              <div className="absolute top-0 right-0 w-64 h-64 bg-purple-500/10 rounded-full blur-3xl group-hover:bg-purple-500/20 transition-colors pointer-events-none" />
+            <TiltCard key={cert.id} maxTilt={5} scale={1.02} className="h-full">
+              <div
+                onMouseEnter={() => sounds.playHover()}
+                className="glass-card rounded-3xl p-6 sm:p-8 border border-white/10 hover:border-purple-500/50 transition-all duration-300 relative group flex flex-col justify-between overflow-hidden shadow-xl h-full"
+              >
+                {/* Background ambient glow */}
+                <div className="absolute top-0 right-0 w-64 h-64 bg-purple-500/10 rounded-full blur-3xl group-hover:bg-purple-500/25 transition-colors pointer-events-none" />
 
-              <div>
-                <div className="flex items-center justify-between gap-3 mb-4">
-                  <span className="text-[11px] font-mono font-bold px-3 py-1 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/30">
-                    {cert.tag}
-                  </span>
-                  <span className="text-xs font-mono text-slate-400">
-                    Verified Credential 0{index + 1}
-                  </span>
-                </div>
+                <div>
+                  <div className="flex items-center justify-between gap-3 mb-4">
+                    <span className="text-[11px] font-mono font-bold px-3 py-1 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/30 shadow-[0_0_10px_rgba(168,85,247,0.2)]">
+                      {cert.tag}
+                    </span>
+                    <span className="text-xs font-mono text-slate-400">
+                      Verified Credential 0{index + 1}
+                    </span>
+                  </div>
 
-                <div className="flex items-start gap-4 mb-4">
-                  <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-purple-500 via-pink-500 to-indigo-500 p-[1.5px] shrink-0">
-                    <div className="w-full h-full bg-[#080b14] rounded-2xl flex items-center justify-center">
-                      <ShieldCheck className="w-6 h-6 text-purple-400 group-hover:scale-110 transition-transform" />
+                  <div className="flex items-start gap-4 mb-4">
+                    <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-purple-500 via-pink-500 to-indigo-500 p-[1.5px] shrink-0 shadow-md">
+                      <div className="w-full h-full bg-[#080b14] rounded-2xl flex items-center justify-center">
+                        <ShieldCheck className="w-6 h-6 text-purple-400 group-hover:scale-110 transition-transform" />
+                      </div>
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold text-white font-['Outfit'] group-hover:text-purple-300 transition-colors">
+                        {cert.title}
+                      </h3>
+                      <div className="text-xs font-mono text-cyan-400 font-semibold mt-1">
+                        {cert.issuer}
+                      </div>
                     </div>
                   </div>
-                  <div>
-                    <h3 className="text-xl font-bold text-white font-['Outfit'] group-hover:text-purple-300 transition-colors">
-                      {cert.title}
-                    </h3>
-                    <div className="text-xs font-mono text-cyan-400 font-semibold mt-1">
-                      {cert.issuer}
+
+                  <p className="text-slate-300 text-xs sm:text-sm leading-relaxed mb-5">
+                    {cert.description}
+                  </p>
+
+                  {/* Skills gained */}
+                  <div className="space-y-2 mb-6">
+                    <div className="text-[11px] font-mono text-slate-400 uppercase">Skills & Competencies:</div>
+                    <div className="flex flex-wrap gap-1.5">
+                      {cert.skillsGained.map((skill) => (
+                        <span
+                          key={skill}
+                          className="px-2.5 py-1 rounded-lg bg-slate-900/80 text-slate-300 border border-slate-800 text-[11px] font-mono"
+                        >
+                          {skill}
+                        </span>
+                      ))}
                     </div>
                   </div>
                 </div>
 
-                <p className="text-slate-300 text-xs sm:text-sm leading-relaxed mb-5">
-                  {cert.description}
-                </p>
-
-                {/* Skills gained */}
-                <div className="space-y-2 mb-6">
-                  <div className="text-[11px] font-mono text-slate-400 uppercase">Skills & Competencies:</div>
-                  <div className="flex flex-wrap gap-1.5">
-                    {cert.skillsGained.map((skill) => (
-                      <span
-                        key={skill}
-                        className="px-2.5 py-1 rounded-lg bg-slate-900/80 text-slate-300 border border-slate-800 text-[11px] font-mono"
-                      >
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
+                {/* Action Button */}
+                <div className="pt-4 border-t border-slate-800 flex items-center justify-between">
+                  <button
+                    onClick={() => {
+                      sounds.playClick();
+                      setActiveCert(cert);
+                    }}
+                    className="px-4 py-2.5 rounded-xl bg-purple-500/20 hover:bg-purple-500/30 text-purple-300 hover:text-white border border-purple-500/30 text-xs font-semibold transition-all flex items-center gap-1.5 cursor-pointer shadow-sm"
+                  >
+                    <Eye className="w-3.5 h-3.5" />
+                    <span>Inspect Credential Details</span>
+                  </button>
+                  <span className="text-xs font-mono text-emerald-400 flex items-center gap-1">
+                    <CheckCircle2 className="w-3.5 h-3.5" /> Verified
+                  </span>
                 </div>
-              </div>
 
-              {/* Action Button */}
-              <div className="pt-4 border-t border-slate-800 flex items-center justify-between">
-                <button
-                  onClick={() => {
-                    sounds.playClick();
-                    setActiveCert(cert);
-                  }}
-                  className="px-4 py-2 rounded-xl bg-purple-500/20 hover:bg-purple-500/30 text-purple-300 hover:text-white border border-purple-500/30 text-xs font-semibold transition-all flex items-center gap-1.5 cursor-pointer"
-                >
-                  <Eye className="w-3.5 h-3.5" />
-                  <span>Inspect Credential Details</span>
-                </button>
-                <span className="text-xs font-mono text-emerald-400 flex items-center gap-1">
-                  <CheckCircle2 className="w-3.5 h-3.5" /> Verified
-                </span>
               </div>
-
-            </div>
+            </TiltCard>
           ))}
         </div>
 
