@@ -229,8 +229,8 @@ export const AboutSection: React.FC = () => {
                     id="about-profile-photo-img"
                     onError={(e) => {
                       const target = e.currentTarget as HTMLImageElement;
-                      if (target.src !== PERSONAL_INFO.photoUrl) {
-                        target.src = PERSONAL_INFO.photoUrl;
+                      if (target.src !== PERSONAL_INFO.avatarPhoto) {
+                        target.src = PERSONAL_INFO.avatarPhoto;
                       }
                     }}
                   />
@@ -480,6 +480,12 @@ export const AboutSection: React.FC = () => {
                 alt={PERSONAL_INFO.name} 
                 className="max-h-[65vh] w-auto object-contain rounded-lg shadow-2xl"
                 referrerPolicy="no-referrer"
+                onError={(e) => {
+                  const target = e.currentTarget as HTMLImageElement;
+                  if (target.src !== PERSONAL_INFO.avatarPhoto) {
+                    target.src = PERSONAL_INFO.avatarPhoto;
+                  }
+                }}
               />
             </div>
 
