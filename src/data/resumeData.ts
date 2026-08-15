@@ -1,9 +1,10 @@
 import { Project, SkillCategory, Education, Certification, HackathonExperience, SchoolEducationItem } from '../types';
-import arunProfilePhoto from '../assets/images/arun_photo.jpg';
+import arunProfilePhoto from '../assets/arunphoto.jpg';
 
 export const PERSONAL_INFO = {
   name: 'Arun Pandi A',
-  photoUrl: arunProfilePhoto,
+  photoUrl: '/assets/arunphoto.jpg',
+  avatarPhoto: arunProfilePhoto,
   headline: 'Software Developer | C & Web Development',
   subHeadline: 'Electronics & Communication Engineering Undergraduate (Expected 2028 | CGPA: 8.2/10.0)',
   email: 'arun6374860@gmail.com',
